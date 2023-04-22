@@ -14,8 +14,10 @@ module.exports = {
             },
 
             colors: {
-                'color-primary': '#525fe1',
+                'primary': '#525fe1',
             },
+
+            
         },
     },
     plugins: [],

@@ -2,20 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer utilities {
+    .btn-blue {
+        @apply bg-primary text-white px-8 py-3 rounded-md transition-all hover:bg-[#231f40];
+    }
+}
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
+}
+
+.dialog {
+    width: 100%;
+    background: transparent;
+    overflow: initial;
+    margin: auto;
+}
+
+.dialog::backdrop {
+    background: rgba(26, 26, 45, 0.375);
+    backdrop-filter: blur(7px);
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-8rem);
+    }
+    80% {
+        transform: translateY(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
+    /* // 80%{
+    //     transform: translateX(-1rem);
+    // } */
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(5rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.moveInLeft {
+    animation: moveInLeft 2s 0.2s;
+}
+.moveInBottom {
+    animation: moveInBottom 2s 0.2s;
+}
+
+.font-clamp-lg {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+}
+.font-clamp-md {
+    font-size: clamp(0.7rem, 2vw, 1.1rem);
 }
 
 body {
-  background: url('/assets/hero.webp');
+    background: url('/assets/hero.webp');
+    /* // font-size: 62.5% */
 }

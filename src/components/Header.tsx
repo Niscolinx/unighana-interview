@@ -1,24 +1,85 @@
-import React from 'react'
+
+"use client"
+
+import React, { useRef } from 'react'
 import Link from 'next/link'
+import { AiOutlineMenu } from 'react-icons/ai'
+import { IoMdClose } from 'react-icons/io'
+
+const lists = [
+    {
+        title: 'Home',
+        href: '/',
+    },
+    {
+        title: 'Universities',
+        href: '/',
+    },
+    {
+        title: 'Majors',
+        href: '/',
+    },
+]
 
 function Header() {
+    const dialogRef = useRef<HTMLDialogElement | null>(null)
+
+    const closeDialog = () => {
+        if (dialogRef.current) {
+            console.log('current')
+            dialogRef.current.close()
+        }
+    }
+
+    const openDialog = () => {
+        if (dialogRef.current) {
+            dialogRef.current.showModal()
+        }
+    }
     return (
-        <div className='flex justify-between items-center p-8'>
-            <p className='font-bold text-2xl'>UniGhana</p>
+        <>
+            <dialog className='dialog' ref={dialogRef}>
+                <section className='grid place-content-center w-full h-[100vh]'>
+                    <IoMdClose
+                        className='absolute right-4 top-4 text-[2rem] cursor-pointer'
+                        onClick={closeDialog}
+                    />
 
-            <ul className='flex gap-5 items-center font-medium'>
-                <li>
-                    <Link href='/'>Home</Link>
-                </li>
-                <li>
-                    <Link href='/'>Universities</Link>
-                </li>
-            </ul>
+                    <ul>
+                        <li>hello</li>
+                        <li>hello</li>
+                        <li>hello</li>
+                        <li>hello</li>
+                    </ul>
+                </section>
+            </dialog>
 
-            <button className='bg-color-primary text-white px-5 py-2 rounded-md'>
-                Login
-            </button>
-        </div>
+            <div className='flex justify-between items-center px-8 py-4'>
+                <p className='font-bold text-2xl'>UniGhana</p>
+
+                <ul className=' gap-5 items-center font-medium hidden lg:flex'>
+                    {lists.map(({ title, href }, index) => (
+                        <li key={index} className='hover:text-primary'>
+                            <Link
+                                href={href}
+                                className='hover:text-primary text-lg '
+                            >
+                                {title}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+
+                <button className='btn-blue hidden lg:flex'>Login</button>
+
+                <button
+                    className='flex lg:hidden bg-white w-8 h-8 rounded-md items-center justify-center shadow-lg'
+                    onClick={openDialog}
+                >
+                    <AiOutlineMenu className='text-primary w-4 h-4' />
+                </button>
+            </div>
+        </>
     )
 }
 
