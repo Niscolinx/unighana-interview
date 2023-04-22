@@ -1,9 +1,9 @@
 import './globals.css'
-import { Lato } from 'next/font/google'
+import { Urbanist  } from 'next/font/google'
 
-const lato = Lato({
+const urbanist = Urbanist({
     subsets: ['latin'],
-    weight: ['300', '400', '700'],
+    weight: ['300', '400', '500', '700'],
 })
 
 export const metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang='en'>
-            <body className={lato.className}>{children}</body>
+            <body className={urbanist.className}>{children}</body>
         </html>
     )
 }
