@@ -73,10 +73,10 @@ function Header() {
                 <button className='btn-blue hidden lg:flex'>Login</button>
 
                 <button
-                    className='flex lg:hidden bg-white w-8 h-8 rounded-md items-center justify-center shadow-lg'
+                    className='flex lg:hidden bg-white w-10 h-10 rounded-md items-center justify-center shadow-lg'
                     onClick={openDialog}
                 >
-                    <AiOutlineMenu className='text-primary w-4 h-4' />
+                    <AiOutlineMenu className='text-primary w-5 h-5' />
                 </button>
             </div>
         </>

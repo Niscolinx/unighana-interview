@@ -26,7 +26,7 @@ function Hero() {
                 />
                 <div className='grid gap-2 py-4'>
                     <h3 className='relative flex items-center gap-2 uppercase font-bold text-lg'>
-                        <span className=' w-14 h-[2px] bg-primary '>
+                        <span className=' w-14 h-[2px] bg-primary hidden md:flex'>
                             &nbsp;
                         </span>
                         <span className='text-primary tracking-wider font-clamp-md'>
@@ -34,7 +34,7 @@ function Hero() {
                         </span>
                     </h3>
 
-                    <h1 className='text-5xl font-bold font-clamp'>
+                    <h1 className='text-5xl font-bold font-clamp-lg'>
                         Committed To Learn Excellence In Education
                     </h1>
                 </div>
@@ -45,8 +45,8 @@ function Hero() {
                             key={index}
                             className='text-gray-500 flex items-center gap-4 py-1'
                         >
-                            <p className='w-2 h-2 rounded-full flex shadow '>
-                                <span className='bg-primary rounded-full w-full h-full outline outline-white outline-offset-2 '>
+                            <p className=' rounded-full flex shadow-2xl'>
+                                <span className='bg-primary rounded-full outline outline-white outline-offset-2 w-2 h-2 '>
                                     &nbsp;
                                 </span>
                             </p>
