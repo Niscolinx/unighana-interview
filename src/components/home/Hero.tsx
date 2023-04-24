@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import React from 'react'
+import Link from 'next/link'
 
 function Hero() {
     const list = [
@@ -35,7 +36,7 @@ function Hero() {
                     </h3>
 
                     <h1 className='text-5xl font-bold font-clamp-lg'>
-                        Committed To Learn Excellence In Education
+                        Your University Application Starts Now
                     </h1>
                 </div>
 
@@ -56,7 +57,9 @@ function Hero() {
                     ))}
                 </div>
 
-                <button className='btn-blue mt-8'>Get Started Today</button>
+                <button className='btn-blue mt-8'>
+                    <Link href={'/login'}>Get Started Today</Link>
+                </button>
                 <Image
                     src={'/assets/arrow.webp'}
                     priority
