@@ -14,10 +14,12 @@ module.exports = {
             },
 
             colors: {
-                'primary': '#525fe1',
+                primary: '#525fe1',
             },
 
-            
+            gridTemplateColumns: {
+                '30rem': 'repeat(auto-fit, minmax(30rem, 1fr))',
+            },
         },
     },
     plugins: [],
