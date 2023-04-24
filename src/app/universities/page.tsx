@@ -67,25 +67,7 @@ function Universities() {
         setSearch(value)
     }
 
-    const handleUni = () => {
-        console.log('add')
-        const data = {
-            id: 1,
-            title: 'University of Ghana',
-            description:
-                'The University of Ghana is a public university in Accra, Ghana. It is the oldest university in Ghana and the largest in the world. It is the only university in Ghana that is affiliated with the United Nations.',
-            image: 'https://ik.imagekit.io/39awxerdi/unighana/uni3.webp?updatedAt=1682328769293',
-            link: '/universities/:1',
-            majors: 42,
-        }
-        
-        axios
-            .post('/api/universities', data)
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => console.log({ err }))
-    }
+    
     return (
         <>
             <Header />
@@ -116,7 +98,6 @@ function Universities() {
                     />
                     <IoSearchOutline className='absolute left-6' />
                 </section>
-                <button onClick={handleUni}>Add University</button>
                 <section className='md:grid gap-10 md:grid-cols-30rem my-10 md:my-0'>
                     {universities.map((uni) => (
                         <Card key={uni.id} {...uni} />
