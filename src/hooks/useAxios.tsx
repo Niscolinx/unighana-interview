@@ -3,19 +3,15 @@ import axios from 'axios'
 import { getToken } from '@/components/token'
 
 function useAxios() {
-    const axiosInstance = axios.create({
-        baseURL: 'https://sesa-digital.herokuapp.com/api',
-        // baseURL: 'https://sesadigital.com/api'
-
-    })
+    const axiosInstance = axios.create({})
 
     useEffect(() => {
-       axiosInstance.interceptors.request.use(
+        axiosInstance.interceptors.request.use(
             (config) => {
                 const token = getToken()
                 if (token) {
                     config.headers.Authorization = `Bearer ${token}`
-                } 
+                }
                 return config
             },
             (error) => Promise.reject(error)
@@ -25,9 +21,7 @@ function useAxios() {
             (response) => response.data,
             (error) => Promise.reject(error)
         )
-
-      
-    }, [ axiosInstance])
+    }, [axiosInstance])
 
     return axiosInstance
 }

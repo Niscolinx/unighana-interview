@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import { AxiosResponse } from 'axios'
 
-const Login = () => {
+const Register = () => {
     const router = useRouter
     interface Inputs {
         email: string
@@ -41,12 +41,12 @@ const Login = () => {
         }
 
         return axiosInstance({
-            url: '/login',
+            url: '/register',
             method: 'post',
             data: user,
         })
     }
-    const { mutate } = useSWR('login', postRegister, {
+    const { mutate } = useSWR('register', postRegister, {
         revalidateOnMount: false,
         errorRetryInterval: 0,
         shouldRetryOnError: false,
@@ -125,4 +125,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

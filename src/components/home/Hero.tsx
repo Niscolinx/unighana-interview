@@ -58,7 +58,7 @@ function Hero() {
                 </div>
 
                 <button className='btn-blue mt-8'>
-                    <Link href={'/login'}>Get Started Today</Link>
+                    <Link href={'/register'}>Get Started Today</Link>
                 </button>
                 <Image
                     src={'/assets/arrow.webp'}

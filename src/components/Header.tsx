@@ -95,7 +95,7 @@ function Header() {
                     ))}
                 </ul>
 
-                <button className='btn-blue hidden lg:flex'>Login</button>
+                <Link href={'/login'} className='btn-blue hidden lg:flex'>Login</Link>
 
                 <button
                     className='flex lg:hidden bg-white w-10 h-10 rounded-md items-center justify-center shadow-lg'
