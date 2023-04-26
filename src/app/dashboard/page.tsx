@@ -24,8 +24,11 @@ function Dashboard() {
         router.push('/universities')
     }
 
+    
+
     return (
-        <div className='grid place-items-center my-12'>
+        <div className='grid place-items-center my-12 relative'>
+
             <h1 className='text-2xl font-bold'>Hello {user.firstName},</h1>
             <p className='font-medium'>Welcome to your dashboard</p>
 
