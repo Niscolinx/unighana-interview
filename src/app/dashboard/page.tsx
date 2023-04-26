@@ -1,17 +1,19 @@
 'use client'
-
 import React, {useState, useEffect} from 'react'
 
-
-function page() {
+function Dashboard() {
     const [user, setUser] = useState('')
+
+
     useEffect(() => {
 
         const getUser = localStorage.getItem('user')
+        if(getUser){
 
-        const user_detail = JSON.parse(getUser)
-
-        setUser(user_detail)
+            const user_detail = JSON.parse(getUser)
+            
+            setUser(user_detail)
+        }
 
     }, [])
 
@@ -24,4 +26,4 @@ function page() {
     )
 }
 
-export default page
+export default Dashboard
