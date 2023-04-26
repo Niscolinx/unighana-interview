@@ -50,7 +50,7 @@ const Login = () => {
 
             router.push('/dashboard')
 
-            localStorage.setItem('access_token', res.access_token)
+            localStorage.setItem('user', JSON.stringify(res))
         },
         onError: (err: any) => {
             console.log({ err })
