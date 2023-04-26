@@ -1,3 +1,4 @@
+import ReactQueryHOC from '@/components/HOC/ReactQuery'
 import './globals.css'
 
 import { Urbanist } from 'next/font/google'
@@ -17,11 +18,11 @@ export default function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-
-
     return (
         <html lang='en'>
-            <body className={`${urbanist.className}`}>{children}</body>
+            <body className={`${urbanist.className}`}>
+                <ReactQueryHOC>{children}</ReactQueryHOC>
+            </body>
         </html>
     )
 }

@@ -1,53 +1,20 @@
 import bcrypt from 'bcryptjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import jwt from 'jsonwebtoken'
-import dbConnect from '../../../lib/dbConnect'
 import { setCookie } from 'cookies-next'
-import User, { IUser } from '@/app/models/User'
 
-export default async function login(req: NextApiRequest, res: NextApiResponse) {
-    const { emailOrUsername, password, admin } = req.body
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
+    const { email, password } = req.body
 
     console.log(req.body)
 
     try {
-        await dbConnect()
 
-        const email: IUser | null = await User.findOne({
-            email: emailOrUsername,
-        })
-        const username: IUser | null = await User.findOne({
-            username: emailOrUsername,
-        })
+        const user = ''
+       
 
 
-        const user = email || username
 
-
-        if (admin) {
-
-            if (!user) {
-                return res.status(404).json( {
-                    message: 'User not found',
-                } )
-            }
-            if (!bcrypt.compareSync(password, user.password)) {
-                return res.status(401).json({
-                    message: 'Password is incorrect',
-                })
-            }
-            const token = jwt.sign(
-                { userId: user._id.toString(), email: user.email },
-                process.env.JWT_SECRET!
-            )
-            // setCookie('adminToken', token, {
-            //     secure: process.env.NODE_ENV! === 'production',
-            // })
-
-            //set cookie in nodejs
-            res.setHeader('Set-Cookie', `adminToken=${token}; Path=/; HttpOnly; Secure; Max-Age=${60 * 60 * 24 * 7}`)
-            return res.status(200).json({ user })
-        }
     
         
 
@@ -68,7 +35,8 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         const token = jwt.sign(
             {
                 email,
-                userId: user!._id.toString(),
+                // userId: user._id.toString(),
+                userId: 'sdf'
             },
             process.env.JWT_SECRET!,
             {

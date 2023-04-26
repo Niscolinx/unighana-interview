@@ -5,7 +5,7 @@ import useAxios from '@/hooks/useAxios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
-import useSWR from 'swr'
+import { useMutation } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
 
 const Register = () => {
@@ -33,24 +33,20 @@ const Register = () => {
     //     console.log({ values })
     // })
 
-    const axiosInstance = useAxios()
+    const axiosInstance = useAxios() 
     const postRegister = (data: Inputs) => {
         const user = {
-            user: data.email,
+            email: data.email,
             password: data.password,
         }
 
         return axiosInstance({
-            url: '/register',
+            url: '/auth/register',
             method: 'post',
             data: user,
         })
     }
-    const { mutate } = useSWR('register', postRegister, {
-        revalidateOnMount: false,
-        errorRetryInterval: 0,
-        shouldRetryOnError: false,
-
+    const { mutate } = useMutation(['register'], postRegister, {
         onSuccess: (res) => {
             setResponseMessage({
                 className: 'text-green-600',
@@ -72,7 +68,7 @@ const Register = () => {
     const onSubmit = handleSubmit((data) => {
         setResponseMessage(null)
         console.log('mutate', data)
-        mutate(data as unknown as AxiosResponse<Inputs>)
+        mutate(data)
     })
 
     const formInputs = [

@@ -3,7 +3,9 @@ import axios from 'axios'
 import { getToken } from '@/components/token'
 
 function useAxios() {
-    const axiosInstance = axios.create({})
+    const axiosInstance = axios.create({
+        baseURL: 'https://unighana-be-production.up.railway.app/',
+    })
 
     useEffect(() => {
         axiosInstance.interceptors.request.use(

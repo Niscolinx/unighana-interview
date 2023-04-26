@@ -13,7 +13,7 @@ function Hero() {
 
     return (
         <div className='relative grid mt-[5rem] lg:mt-0 lg:grid-cols-2 h-full items-center'>
-            <section className='py-10 relative mt-[-6rem] transition-all moveInLeft'>
+            <section className='py-10 relative mt-[-6rem] transition-all moveInLeft grid gap-4'>
                 <Image
                     src={'/assets/shape-1.png'}
                     priority
@@ -25,7 +25,7 @@ function Hero() {
                     }}
                     alt=''
                 />
-                <div className='grid gap-2 py-4'>
+                <div className='grid gap-2'>
                     <h3 className='relative flex items-center gap-2 uppercase font-bold text-lg'>
                         <span className=' w-14 h-[2px] bg-primary hidden md:flex'>
                             &nbsp;
@@ -57,9 +57,10 @@ function Hero() {
                     ))}
                 </div>
 
-                <button className='btn-blue mt-8'>
-                    <Link href={'/register'}>Get Started Today</Link>
-                </button>
+                <Link href={'/register'} className='btn-blue justify-self-center md:justify-self-start'>
+                    Get Started Today
+                </Link>
+
                 <Image
                     src={'/assets/arrow.webp'}
                     priority
