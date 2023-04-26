@@ -57,7 +57,7 @@ const Input: FC<Partial<Input> & { label: string }> = ({
                     <div className='relative flex items-center'>
                         <input
                             type={eyeIcon ? 'text' : 'password'}
-                            className={`border pr-12 border-none px-4 py-3 outline-none rounded-lg w-full disabled:opacity-50 disabled:cursor-not-allowed ${
+                            className={`border border-gray-200 pr-12 px-4 py-3 outline-none rounded-lg w-full disabled:opacity-50 disabled:cursor-not-allowed ${
                                 formErrors &&
                                 formErrors[label] &&
                                 'border-red-500 '
@@ -91,7 +91,7 @@ const Input: FC<Partial<Input> & { label: string }> = ({
                                 value={value}
                                 {...(register &&
                                     register(label, validationOptions))}
-                                className={` w-full border-none outline-none disabled:opacity-50 disabled:cursor-not-allowed p-4 pl-0 ${
+                                className={` w-full outline-none disabled:opacity-50 disabled:cursor-not-allowed p-4 pl-0 ${
                                     formErrors &&
                                     formErrors[label] &&
                                     'border-red-500 '
@@ -105,7 +105,7 @@ const Input: FC<Partial<Input> & { label: string }> = ({
                                 value={value}
                                 {...(register &&
                                     register(label, validationOptions))}
-                                className={` border w-full rounded-lg border-none outline-none disabled:opacity-50 disabled:cursor-not-allowed px-4 py-3 ${
+                                className={` border border-gray-200 w-full rounded-lg outline-none disabled:opacity-50 disabled:cursor-not-allowed px-4 py-3 ${
                                     formErrors &&
                                     formErrors[label] &&
                                     'border-red-500 '
