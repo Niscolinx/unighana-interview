@@ -105,7 +105,7 @@ const Input: FC<Partial<Input> & { label: string }> = ({
                                 value={value}
                                 {...(register &&
                                     register(label, validationOptions))}
-                                className={` w-full rounded-lg border-none outline-none disabled:opacity-50 disabled:cursor-not-allowed px-4 py-3 ${
+                                className={` border w-full rounded-lg border-none outline-none disabled:opacity-50 disabled:cursor-not-allowed px-4 py-3 ${
                                     formErrors &&
                                     formErrors[label] &&
                                     'border-red-500 '
