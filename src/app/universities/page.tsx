@@ -20,7 +20,6 @@ function Universities() {
 
     const { isLoading } = useQuery(['universities'], getRequest, {
         onSuccess: (res: any) => {
-            console.log({ res })
 
             setUniversities(res)
         },
@@ -48,7 +47,7 @@ function Universities() {
     }
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <p className='p-8 text-center'>Loading...</p>
     }
 
     return (
