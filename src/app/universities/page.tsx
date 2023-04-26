@@ -2,71 +2,55 @@
 
 import Card, { CardProps } from '@/components/Card'
 import Header from '@/components/Header'
+import useAxios from '@/hooks/useAxios'
 import React, { ChangeEvent, useState } from 'react'
 import { IoSearchOutline } from 'react-icons/io5'
-
-const UNIVERSITIES = [
-    {
-        id: 1,
-        title: 'University of Ghana',
-        description:
-            'The University of Ghana is a public university in Accra, Ghana. It is the oldest university in Ghana and the largest in the world. It is the only university in Ghana that is affiliated with the United Nations.',
-        image: 'https://ik.imagekit.io/39awxerdi/unighana/uni3.webp?updatedAt=1682328769293',
-        link: '/universities/:1',
-        majors: 42,
-    },
-    {
-        id: 2,
-        title: 'University of Accra',
-        description:
-            'The University of Ghana is a public university in Accra, Ghana. It is the oldest university in Ghana and the largest in the world. It is the only university in Ghana that is affiliated with the United Nations.',
-        image: 'https://ik.imagekit.io/39awxerdi/unighana/uni2.webp?updatedAt=1682328768612',
-        link: '/universities/:2',
-        majors: 22,
-    },
-    {
-        id: 3,
-        title: 'University of Ashanti',
-        description:
-            'The University of Ghana is a public university in Accra, Ghana. It is the oldest university in Ghana and the largest in the world. It is the only university in Ghana that is affiliated with the United Nations.',
-        image: 'https://ik.imagekit.io/39awxerdi/unighana/uni4.webp?updatedAt=1682328769289',
-        link: '/universities/:3',
-        majors: 17,
-    },
-    {
-        id: 4,
-        title: 'University of Bono',
-        description:
-            'The University of Ghana is a public university in Accra, Ghana. It is the oldest university in Ghana and the largest in the world. It is the only university in Ghana that is affiliated with the United Nations.',
-        image: 'https://ik.imagekit.io/39awxerdi/unighana/uni1.webp?updatedAt=1682328766184',
-        link: '/universities/:4',
-        majors: 38,
-    },
-] satisfies CardProps[]
+import { useQuery } from '@tanstack/react-query'
 
 function Universities() {
     const [search, setSearch] = useState('')
-    const [universities, setUniversities] = useState<CardProps[]>(UNIVERSITIES)
+    const [universities, setUniversities] = useState<CardProps[]>([])
 
-    const filterUniversities = (search: string) =>
-        UNIVERSITIES.filter((uni) =>
-            uni.title.toLowerCase().includes(search.toLowerCase())
-        )
+    const axiosInstance = useAxios()
+    const getRequest = () => {
+        return axiosInstance({
+            url: 'university/all',
+        })
+    }
+
+    const { isLoading } = useQuery(['universities'], getRequest, {
+        onSuccess: (res: any) => {
+            console.log({ res })
+
+            setUniversities(res)
+        },
+        onError: (err: any) => {
+            console.log({ err })
+        },
+    })
 
     React.useEffect(() => {
+        const filterUniversities = (search: string) =>
+            [...universities].filter((uni) =>
+                uni.title.toLowerCase().includes(search.toLowerCase())
+            )
+
         if (search) {
             setUniversities(filterUniversities(search))
         } else {
-            setUniversities(UNIVERSITIES)
+            setUniversities((prev) => prev)
         }
-    }, [search])
+    }, [search, universities])
 
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target
         setSearch(value)
     }
 
-    
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <>
             <Header />
@@ -90,7 +74,7 @@ function Universities() {
                 <section className='relative flex items-center justify-center sm:w-[30rem] sm:mx-auto'>
                     <input
                         type='text'
-                        className='  border-none p-3 pr-2 pl-12 outline-none w-full rounded-3xl'
+                        className=' border p-3 pr-2 pl-12 outline-none w-full rounded-3xl'
                         placeholder='Search'
                         value={search}
                         onChange={handleSearch}

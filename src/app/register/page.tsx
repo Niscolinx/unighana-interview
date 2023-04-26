@@ -4,12 +4,11 @@ import Input from '@/components/Input'
 import useAxios from '@/hooks/useAxios'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
 
 const Register = () => {
-    const router = useRouter
+    const router = useRouter()
     interface Inputs {
         email: string
         password: string
@@ -33,28 +32,27 @@ const Register = () => {
     //     console.log({ values })
     // })
 
-    const axiosInstance = useAxios() 
+    const axiosInstance = useAxios()
     const postRegister = (data: Inputs) => {
-        const user = {
-            email: data.email,
-            password: data.password,
-        }
+       
 
         return axiosInstance({
             url: '/auth/register',
             method: 'post',
-            data: user,
+            data
         })
     }
-    const { mutate } = useMutation(['register'], postRegister, {
-        onSuccess: (res) => {
+    const { mutate, isLoading } = useMutation(['register'], postRegister, {
+        onSuccess: (res: any) => {
+            console.log({ res })
             setResponseMessage({
                 className: 'text-green-600',
                 displayMessage: 'Registration Successful',
             })
-            const token = res.data.token
 
-            router().push('/dashboard')
+            router.push('/dashboard')
+
+            localStorage.setItem('access_token', res.access_token)
         },
         onError: (err: any) => {
             console.log({ err })
@@ -68,14 +66,22 @@ const Register = () => {
     const onSubmit = handleSubmit((data) => {
         setResponseMessage(null)
         console.log('mutate', data)
+
         mutate(data)
     })
 
     const formInputs = [
         {
+            label: 'firstName',
+            name: 'First Name',
+        },
+        {
+            label: 'lastName',
+            name: 'Last Name',
+        },
+        {
             name: 'Email address',
             label: 'email',
-            type: 'email',
         },
         {
             label: 'password',
@@ -112,7 +118,7 @@ const Register = () => {
                         })}
 
                         <button className=' btn-blue mt-10 justify-self-center'>
-                            Register
+                            {isLoading ? 'Loading...' : 'Register'}
                         </button>
                     </>
                 </form>

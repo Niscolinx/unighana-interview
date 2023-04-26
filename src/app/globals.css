@@ -90,7 +90,4 @@
     font-size: clamp(0.7rem, 2vw, 1.1rem);
 }
 
-body {
-    background: url('/assets/hero.webp');
-    /* // font-size: 62.5% */
-}
+

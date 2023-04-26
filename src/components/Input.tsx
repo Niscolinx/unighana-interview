@@ -49,7 +49,7 @@ const Input: FC<Partial<Input> & { label: string }> = ({
             }`}
         >
             <>
-                <label htmlFor={label} className='font-semibold capitalize'>
+                <label htmlFor={label} className='font-medium capitalize'>
                     {name ?? label.replaceAll('_', ' ')}
                 </label>
 

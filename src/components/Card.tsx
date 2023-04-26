@@ -10,22 +10,29 @@ export interface CardProps {
     id: number
     title: string
     description: string
-    image: string
-    link: string
+    imageUrl: string
     majors: number
     isDetail?: boolean
 }
 
-function Card({ title, description, image, link, majors, isDetail = true }: CardProps) {
+function Card({
+    title,
+    description,
+    imageUrl,
+    majors,
+    id,
+    isDetail = true,
+}: CardProps) {
+    console.log({ imageUrl })
     return (
-        <div className=' gap-2 shadow-lg w-full'>
-            <Image
+        <div className=' gap-2 shadow-lg w-full overflow-hidden max-w-[60rem] mx-auto'>
+            <img
                 width={250}
                 height={250}
-                sizes='(min-width: 768px) 400px, 100vw'
-                src={image}
+                sizes='(min-width: 768px) 200px, 100vw'
+                src={`${imageUrl}`}
                 alt={title}
-                className='w-full'
+                className='w-full rounded-tr-lg rounded-tl-lg'
             />
 
             <div className='p-4 grid gap-8 my-4 md:my-0'>
@@ -41,14 +48,14 @@ function Card({ title, description, image, link, majors, isDetail = true }: Card
                             {majors}
                         </p>
                     </div>
-                    <p className=' text-xl'>{description}</p>
+                    <p className='font-light'>{description}</p>
                 </div>
                 {isDetail && (
                     <div className='justify-self-center'>
                         <Link
                             className='btn-blue flex items-center gap-2 '
-                            href={link}
-                            
+                            href={`universities/${id}`}
+                            target='_blank'
                         >
                             Know More
                             <span>
