@@ -1,6 +1,6 @@
 'use client'
 
-import Card from '@/components/Card'
+import Card, { CardProps } from '@/components/Card'
 import Header from '@/components/Header'
 import React, { ChangeEvent, useState } from 'react'
 import { IoSearchOutline } from 'react-icons/io5'
@@ -42,11 +42,11 @@ const UNIVERSITIES = [
         link: '/universities/:4',
         majors: 38,
     },
-] 
+] satisfies CardProps[]
 
 function Universities() {
     const [search, setSearch] = useState('')
-    const [universities, setUniversities] = useState(UNIVERSITIES)
+    const [universities, setUniversities] = useState<CardProps[]>(UNIVERSITIES)
 
     const filterUniversities = (search: string) =>
         UNIVERSITIES.filter((uni) =>

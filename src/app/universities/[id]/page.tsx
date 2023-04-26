@@ -1,11 +1,11 @@
 'use client'
 
-import Card, { CardProps } from '@/components/Card'
+import Card from '@/components/Card'
 import Header from '@/components/Header'
 import React, { ChangeEvent, useState } from 'react'
 import { IoSearchOutline } from 'react-icons/io5'
 
-function University({ ...props }: CardProps) {
+function University({ ...props }: any) {
     return (
         <>
             <Header />
